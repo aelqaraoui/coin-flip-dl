@@ -5,7 +5,7 @@ import './global.css'
 import BN from 'bn.js'
 
 import getConfig from './config'
-const { networkId } = getConfig(process.env.NODE_ENV || 'development')
+const { networkId } = getConfig('production')
 
 import * as nearAPI from "near-api-js";
 const { utils, connect, providers } = nearAPI;
@@ -85,7 +85,7 @@ export default function App() {
     });
 
     const provider = new providers.JsonRpcProvider(
-      "https://archival-rpc.testnet.near.org"
+      "https://archival-rpc.mainnet.near.org"
     );
   
     const urlSearchParams = new URLSearchParams(window.location.search);

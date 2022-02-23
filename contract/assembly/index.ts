@@ -6,8 +6,8 @@ import { AccountId, ONE_NEAR, asNEAR, toYocto, Amount } from "../utils";
 export class Lottery {
   private chance: f64 = 0.5;
   private fee: f64 = 0.035;
-  private feeWallet: string = "fees.amino.testnet";
-  private teamWallet: string = "team.amino.testnet";
+  private feeWallet: string = "fees.woothugg.near";
+  private teamWallet: string = "team.woothugg.near";
 
   explain(): string {
     return "Players have a " + (this.chance * 100).toString() + "% chance of winning.";
@@ -56,7 +56,7 @@ export class Lottery {
 
   @mutateState()
   configure(chance: f64): void {
-    assert(Context.sender == "amino.testnet", "Chance must be within range (0..1]");
+    assert(Context.sender == "woothugg.near", "Chance must be within range (0..1]");
     assert(chance >= 0.000000001 && chance <= 1, "Chance must be within range (0..1]");
     this.chance = chance;
     logging.log(this.explain());
