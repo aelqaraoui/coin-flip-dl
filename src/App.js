@@ -59,7 +59,7 @@ export default function App() {
       return response.json();
     }).then(async function(data) {
       console.log(data)
-
+/*
       let totalVolumepl = 0;
 
       console.log(data.slice(0, 10))
@@ -72,7 +72,7 @@ export default function App() {
 
 
       setTotalVolume(totalVolumepl)
-
+*/
       setBalance( (await window.walletConnection._connectedAccount.getAccountBalance()).available / 1000000000000000000000000 );
 
       const near = await connect(window.walletConnection._near.config);
