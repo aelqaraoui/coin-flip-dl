@@ -55,11 +55,20 @@ export default function App() {
   }
 
   React.useEffect(async () => {
+
+    setBalance( (await window.walletConnection._connectedAccount.getAccountBalance()).available / 1000000000000000000000000 );
+
+    const near = await connect(window.walletConnection._near.config);
+    const account = await near.account(window.walletConnection._near.config.contractName);
+      
+    console.log(account)
+    setContractBalance( (await account.getAccountBalance()).available / 1000000000000000000000000 );
+/*
     fetch('https://leaderboard-degen.vercel.app/api/indexer').then(function(response) {
       return response.json();
     }).then(async function(data) {
       console.log(data)
-/*
+
       let totalVolumepl = 0;
 
       console.log(data.slice(0, 10))
@@ -72,18 +81,12 @@ export default function App() {
 
 
       setTotalVolume(totalVolumepl)
-*/
-      setBalance( (await window.walletConnection._connectedAccount.getAccountBalance()).available / 1000000000000000000000000 );
 
-      const near = await connect(window.walletConnection._near.config);
-      const account = await near.account(window.walletConnection._near.config.contractName);
       
-      console.log(account)
-      setContractBalance( (await account.getAccountBalance()).available / 1000000000000000000000000 );
     }).catch(function() {
       console.log("Booo");
     });
-
+*/
     const provider = new providers.JsonRpcProvider(
       "https://archival-rpc.mainnet.near.org"
     );
